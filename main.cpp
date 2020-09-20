@@ -1,144 +1,133 @@
 #include <iostream>
-#include <stdlib.h>
+
 using namespace std;
+static char celdaDeJuego[10] = { 'o','1','2','3','4','5','6','7','8','9' };
 
-char square[10] = {'o','1','2','3','4','5','6','7','8','9'};
-
-int main()
-{
-	int player = 1,i,choice;
-
-    char mark;
-    do
-    {
-        system("cls");
-        cout << "\n\n\tTic Tac Toe\n\n";
-
-        cout << "Player 1 (X)  -  Player 2 (O)" << endl << endl;
-        cout << endl;
-
-        cout << "     |     |     " << endl;
-        cout << "  " << square[1] << "  |  " << square[2] << "  |  " << square[3] << endl;
-
-        cout << "_____|_____|_____" << endl;
-        cout << "     |     |     " << endl;
-
-        cout << "  " << square[4] << "  |  " << square[5] << "  |  " << square[6] << endl;
-
-        cout << "_____|_____|_____" << endl;
-        cout << "     |     |     " << endl;
-
-        cout << "  " << square[7] << "  |  " << square[8] << "  |  " << square[9] << endl;
-
-        cout << "     |     |     " << endl << endl;
-        player=(player%2)?1:2;
-
-        cout << "Player " << player << ", enter a number:  ";
-        cin >> choice;
-
-        mark=(player == 1) ? 'X' : 'O';
-
-        if (choice == 1 && square[1] == '1')
-
-            square[1] = mark;
-        else if (choice == 2 && square[2] == '2')
-
-            square[2] = mark;
-        else if (choice == 3 && square[3] == '3')
-
-            square[3] = mark;
-        else if (choice == 4 && square[4] == '4')
-
-            square[4] = mark;
-        else if (choice == 5 && square[5] == '5')
-
-            square[5] = mark;
-        else if (choice == 6 && square[6] == '6')
-
-            square[6] = mark;
-        else if (choice == 7 && square[7] == '7')
-
-            square[7] = mark;
-        else if (choice == 8 && square[8] == '8')
-
-            square[8] = mark;
-        else if (choice == 9 && square[9] == '9')
-
-            square[9] = mark;
-        else
-        {
-            cout<<"Invalid move ";
-
-            player--;
-            cin.ignore();
-            cin.get();
-        }
-        if (square[1] == square[2] && square[2] == square[3])
-
-            i = 1;
-        else if (square[4] == square[5] && square[5] == square[6])
-
-            i = 1;
-        else if (square[7] == square[8] && square[8] == square[9])
-
-            i = 1;
-        else if (square[1] == square[4] && square[4] == square[7])
-
-            i = 1;
-        else if (square[2] == square[5] && square[5] == square[8])
-
-            i = 1;
-        else if (square[3] == square[6] && square[6] == square[9])
-
-            i = 1;
-        else if (square[1] == square[5] && square[5] == square[9])
-
-            i = 1;
-        else if (square[3] == square[5] && square[5] == square[7])
-
-            i = 1;
-        else if (square[1] != '1' && square[2] != '2' && square[3] != '3'
-                        && square[4] != '4' && square[5] != '5' && square[6] != '6'
-                      && square[7] != '7' && square[8] != '8' && square[9] != '9')
-
-            i = 0;
-        else
-            i = -1;
-
-        player++;
-    }while(i==-1);
+void DibujarTablero() {
     system("cls");
     cout << "\n\n\tTic Tac Toe\n\n";
 
-    cout << "Player 1 (X)  -  Player 2 (O)" << endl << endl;
+    cout << "jugador 1 (X)  -  jugador 2 (O)" << endl << endl;
     cout << endl;
 
     cout << "     |     |     " << endl;
-    cout << "  " << square[1] << "  |  " << square[2] << "  |  " << square[3] << endl;
+    cout << "  " << celdaDeJuego[1] << "  |  " << celdaDeJuego[2] << "  |  " << celdaDeJuego[3] << endl;
 
     cout << "_____|_____|_____" << endl;
     cout << "     |     |     " << endl;
 
-    cout << "  " << square[4] << "  |  " << square[5] << "  |  " << square[6] << endl;
+    cout << "  " << celdaDeJuego[4] << "  |  " << celdaDeJuego[5] << "  |  " << celdaDeJuego[6] << endl;
 
     cout << "_____|_____|_____" << endl;
     cout << "     |     |     " << endl;
 
-    cout << "  " << square[7] << "  |  " << square[8] << "  |  " << square[9] << endl;
+    cout << "  " << celdaDeJuego[7] << "  |  " << celdaDeJuego[8] << "  |  " << celdaDeJuego[9] << endl;
 
     cout << "     |     |     " << endl << endl;
-    if(i==1)
+}
 
-        cout<<"==>\aPlayer "<<--player<<" win ";
+int verificarReslutados(int& i) {
+    if (celdaDeJuego[1] == celdaDeJuego[2] && celdaDeJuego[2] == celdaDeJuego[3])
+
+        i = 1;
+    else if (celdaDeJuego[4] == celdaDeJuego[5] && celdaDeJuego[5] == celdaDeJuego[6])
+
+        i = 1;
+    else if (celdaDeJuego[7] == celdaDeJuego[8] && celdaDeJuego[8] == celdaDeJuego[9])
+
+        i = 1;
+    else if (celdaDeJuego[1] == celdaDeJuego[4] && celdaDeJuego[4] == celdaDeJuego[7])
+
+        i = 1;
+    else if (celdaDeJuego[2] == celdaDeJuego[5] && celdaDeJuego[5] == celdaDeJuego[8])
+
+        i = 1;
+    else if (celdaDeJuego[3] == celdaDeJuego[6] && celdaDeJuego[6] == celdaDeJuego[9])
+
+        i = 1;
+    else if (celdaDeJuego[1] == celdaDeJuego[5] && celdaDeJuego[5] == celdaDeJuego[9])
+
+        i = 1;
+    else if (celdaDeJuego[3] == celdaDeJuego[5] && celdaDeJuego[5] == celdaDeJuego[7])
+
+        i = 1;
+    else if (celdaDeJuego[1] != '1' && celdaDeJuego[2] != '2' && celdaDeJuego[3] != '3'
+        && celdaDeJuego[4] != '4' && celdaDeJuego[5] != '5' && celdaDeJuego[6] != '6'
+        && celdaDeJuego[7] != '7' && celdaDeJuego[8] != '8' && celdaDeJuego[9] != '9')
+
+        i = 0;
     else
-        cout<<"==>\aGame draw";
+        i = -1;
+    return i;
+}
 
+void Jugar(char& marcaDelJugador, int& jugador, int& opcionDeJugador) {
+
+    if (opcionDeJugador == 1 && celdaDeJuego[1] == '1')
+
+        celdaDeJuego[1] = marcaDelJugador;
+    else if (opcionDeJugador == 2 && celdaDeJuego[2] == '2')
+
+        celdaDeJuego[2] = marcaDelJugador;
+    else if (opcionDeJugador == 3 && celdaDeJuego[3] == '3')
+
+        celdaDeJuego[3] = marcaDelJugador;
+    else if (opcionDeJugador == 4 && celdaDeJuego[4] == '4')
+
+        celdaDeJuego[4] = marcaDelJugador;
+    else if (opcionDeJugador == 5 && celdaDeJuego[5] == '5')
+
+        celdaDeJuego[5] = marcaDelJugador;
+    else if (opcionDeJugador == 6 && celdaDeJuego[6] == '6')
+
+        celdaDeJuego[6] = marcaDelJugador;
+    else if (opcionDeJugador == 7 && celdaDeJuego[7] == '7')
+
+        celdaDeJuego[7] = marcaDelJugador;
+    else if (opcionDeJugador == 8 && celdaDeJuego[8] == '8')
+
+        celdaDeJuego[8] = marcaDelJugador;
+    else if (opcionDeJugador == 9 && celdaDeJuego[9] == '9')
+
+        celdaDeJuego[9] = marcaDelJugador;
+    else
+    {
+        cout << "Invalid move ";
+        jugador--;
+        cin.ignore();
+        cin.get();
+    }
+}
+
+void Game()
+{
+    int jugador = 1, i, opcionDeJugador;
+    char marcaDelJugador;
+
+    do
+    {
+        DibujarTablero();
+        jugador = (jugador % 2) ? 1 : 2;
+        cout << "jugador " << jugador << ", enter a number:  ";
+        cin >> opcionDeJugador;
+        marcaDelJugador = (jugador == 1) ? 'X' : 'O';
+        Jugar(marcaDelJugador, jugador, opcionDeJugador);
+        verificarReslutados(i);
+        jugador++;
+    } while (i == -1);
+    DibujarTablero();
+    if (i == 1)
+
+        cout << "==>\ajugador " << --jugador << " win ";
+    else
+        cout << "==>\aGame draw";
     cin.ignore();
     cin.get();
-    return 0;
 }
 
 
+int main() {
 
+    Game();
 
-
+}
